@@ -22,7 +22,9 @@
     "start": "nodemon src/index.js",
     "knex:db:up": "knex migrate:latest --debug --knexfile ./knexfile.js",
     "knex:db:down": "knex migrate:down",
-    "knex:up:seed":"node src/scripts/generate-reference-data.js"
+    "knex:up:seed":"node src/scripts/generate-reference-data.js",
+    "db:recreate":"node src/scripts/recreate-db.js",
+    "knex:db:recreate-generate":"npm run db:recreate && npm run knex:db:up --env=dev && npm run knex:up:seed"
   },
   "repository": {
     "type": "git",

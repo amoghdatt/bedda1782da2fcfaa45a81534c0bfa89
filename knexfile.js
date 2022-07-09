@@ -2,7 +2,7 @@ const dbConfig = {
   client: 'pg',
   connection: {
     host: 'localhost',
-    user: 'user',
+    user: 'postgres_user',
     password: 'password',
     database: 'postgres',
     port: 5432
