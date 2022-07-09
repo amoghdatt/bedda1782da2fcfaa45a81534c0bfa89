@@ -9,6 +9,7 @@ module.exports = function Server({ fastify, knex, services, mappers, routes, sch
     const { v1Routes } = routes;
 
     fastify.register(swaggerPlugin, swaggerConfig);
+    fastify.register(require('@fastify/multipart'));
     new v1Routes.testRoutes(fastify, { schemaRepository });
     new v1Routes.userRoutes(fastify, { schemaRepository });
 

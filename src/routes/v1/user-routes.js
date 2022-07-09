@@ -31,6 +31,20 @@ function UserRoutes(fastify, { controllers = {}, schemaRepository }) {
     }
   });
 
+  fastify.route({
+    method: 'POST',
+    url: '/v1/user/:userId/file/upload',
+    schema: {
+      response: {
+        200: schemaRepository.v1.user.signup.response
+      }
+    },
+    handler: async function (request, reply) {
+      const data = await request.file();
+      reply.code(HTTP_STATUS_CODE.StatusCodes.CREATED).send({ data: 'file stored' });
+    }
+  });
+
   return fastify;
 }
 
