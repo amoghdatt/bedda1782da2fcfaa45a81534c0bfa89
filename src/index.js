@@ -8,6 +8,7 @@ const Server = require('./server');
 const fastify = require('fastify')({
   logger: true
 });
+const FileController = require('./controllers/file-controller');
 const $RefParser = require('json-schema-ref-parser');
 const v1Routes = require('./routes/v1')();
 const routes = { v1Routes };
@@ -21,10 +22,13 @@ const knex = Knex({
 });
 
 const repositories = new Repositories({ mappers, knex, parser: new $RefParser() });
+const controllers = {
+  fileController: new FileController({ repositories, knex, services })
+};
 
 async function start() {
   const schemaRepository = await repositories.schemaRepository.loadAll();
-  new Server({ fastify, mappers, services, knex, routes, schemaRepository })
+  new Server({ fastify, mappers, services, knex, routes, schemaRepository, controllers })
     .setup()
     .then(server => server.run());
 }

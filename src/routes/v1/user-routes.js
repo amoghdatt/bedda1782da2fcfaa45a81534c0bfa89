@@ -1,6 +1,6 @@
 const HTTP_STATUS_CODE = require('http-status-codes');
 
-function UserRoutes(fastify, { controllers = {}, schemaRepository }) {
+function UserRoutes(fastify, { controllers, schemaRepository }) {
   fastify.route({
     method: 'POST',
     url: '/v1/user/login',
@@ -41,7 +41,12 @@ function UserRoutes(fastify, { controllers = {}, schemaRepository }) {
     },
     handler: async function (request, reply) {
       const data = await request.file();
-      reply.code(HTTP_STATUS_CODE.StatusCodes.CREATED).send({ data: 'file stored' });
+      const enrichedData = {
+        ...data,
+        userId: request.params.userId
+      };
+      const filePath = await controllers.fileController.uploadFile(enrichedData);
+      reply.code(HTTP_STATUS_CODE.StatusCodes.CREATED).send({ data: `file stored ${filePath}` });
     }
   });
 
