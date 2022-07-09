@@ -17,9 +17,18 @@ module.exports = function SchemaRepository(parser) {
       path.join(SCHEMA_LOCATION_V1, 'user-login-response-schema.json')
     );
 
+    const userSignupRequestSchema = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'user-signup-request-schema.json')
+    );
+
+    const userSignupResponseSchema = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'user-signup-response-schema.json')
+    );
+
     const v1Schemas = {
       user: {
-        login: { request: userLoginRequestSchema, response: userLoginResponseSchema }
+        login: { request: userLoginRequestSchema, response: userLoginResponseSchema },
+        signup: { request: userSignupRequestSchema, response: userSignupResponseSchema }
       },
       test: {
         response: testResponseSchema

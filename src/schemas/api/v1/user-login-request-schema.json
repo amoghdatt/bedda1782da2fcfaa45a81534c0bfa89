@@ -12,7 +12,7 @@
             "email":{
                 "type":"string"
             },
-            "passsword":{
+            "password":{
                 "type":"string"
             }
         }

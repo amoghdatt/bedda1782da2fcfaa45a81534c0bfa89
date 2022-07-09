@@ -1,0 +1,9 @@
+{
+    "$id":"userSignUpResponse",
+    "type":"object",
+    "properties":{
+        "data":{
+            "type":"string"
+        }
+    }
+}

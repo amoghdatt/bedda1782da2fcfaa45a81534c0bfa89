@@ -1,0 +1,38 @@
+{
+    "$id":"userSignInRequest",
+    "type":"object",
+    "required":["data"],
+    "properties":{
+        "data":{
+            "type":"string"
+        },
+        "type":"object",
+        "required":["email","password", "firstName","phoneContact"],
+        "properties":{
+            "email":{
+                "type":"string"
+            },
+            "password":{
+                "type":"string"
+            },
+            "firstName":{
+                "type":"string"
+            },
+            "lastName":{
+                "type":"string"
+            },
+            "phoneContact":{
+                "type":"object",
+                "properties":{
+                    "countryCode":{
+                        "type":"string"
+                    },
+                    "phoneNumber":{
+                        "type":"string"
+                    }
+                }
+            }
+        }
+    }
+
+}
