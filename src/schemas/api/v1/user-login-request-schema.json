@@ -1,0 +1,21 @@
+{
+    "$id":"userLoginRequest",
+    "type":"object",
+    "required":["data"],
+    "properties":{
+        "data":{
+            "type":"string"
+        },
+        "type":"object",
+        "required":["email","password"],
+        "properties":{
+            "email":{
+                "type":"string"
+            },
+            "passsword":{
+                "type":"string"
+            }
+        }
+    }
+
+}

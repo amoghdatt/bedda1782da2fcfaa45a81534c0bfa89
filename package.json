@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@fastify/static": "^5.0.0",
+    "@fastify/swagger": "^6.0.0",
     "config": "^3.3.7",
     "fastify": "^4.2.0",
+    "fastify-static": "^4.7.0",
+    "fastify-swagger": "^5.2.0",
+    "http-status-codes": "^2.2.0",
+    "json-schema-ref-parser": "^9.0.9",
     "knex": "^2.1.0",
     "object-mapper": "^6.2.0",
     "pg": "^8.7.3"
@@ -22,9 +28,9 @@
     "start": "nodemon src/index.js",
     "knex:db:up": "knex migrate:latest --debug --knexfile ./knexfile.js",
     "knex:db:down": "knex migrate:down",
-    "knex:up:seed":"node src/scripts/generate-reference-data.js",
-    "db:recreate":"node src/scripts/recreate-db.js",
-    "knex:db:recreate-generate":"npm run db:recreate && npm run knex:db:up --env=dev && npm run knex:up:seed"
+    "knex:up:seed": "node src/scripts/generate-reference-data.js",
+    "db:recreate": "node src/scripts/recreate-db.js",
+    "knex:db:recreate-generate": "npm run db:recreate && npm run knex:db:up --env=dev && npm run knex:up:seed"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,9 @@
+{
+    "$id":"userLoginResponse",
+    "type":"object",
+    "properties":{
+        "data":{
+            "type":"string"
+        }
+    }
+}
