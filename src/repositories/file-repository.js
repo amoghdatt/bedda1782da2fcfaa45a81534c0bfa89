@@ -11,6 +11,14 @@ function FileRepository({ knex }) {
     return result;
   };
 
+  this.findAllByUserId = async (userId, transaction = knex) => {
+    const result = await transaction(TABLE_FILE)
+      .select(['guid', 'userId', 'filename', 'fileType'])
+      .where({ userId });
+
+    return result;
+  };
+
   this.update = async (fileId, file, transaction = knex) => {
     const result = await transaction(TABLE_FILE)
       .update(file)

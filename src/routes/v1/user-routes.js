@@ -41,12 +41,25 @@ function UserRoutes(fastify, { controllers, schemaRepository }) {
     },
     handler: async function (request, reply) {
       const data = await request.file();
+      const fields = data.fields;
       const enrichedData = {
         ...data,
         userId: request.params.userId
       };
       const filePath = await controllers.fileController.uploadFile(enrichedData);
       reply.code(HTTP_STATUS_CODE.StatusCodes.CREATED).send({ data: `file stored ${filePath}` });
+    }
+  });
+
+  fastify.route({
+    method: 'GET',
+    url: '/v1/user/:userId/files',
+    description: 'Get all files of a user',
+    handler: async function (request, reply) {
+      const userId = request.params.userId;
+      const data = await controllers.userController.allUserFiles(userId);
+      return { data };
+      reply.code(HTTP_STATUS_CODE.StatusCodes.OK).send({ data });
     }
   });
 

@@ -10,9 +10,8 @@ exports.up = function (knex) {
     table.string('filename').notNullable();
     table.string('fileType').notNullable();
     table.text('description');
-    table.string('category').notNullable;
+    table.string('category');
     table.string('location').notNullable();
-    table.decimal('fileSize').notNullable();
     table.timestamp('uploadedAt').defaultTo(knex.fn.now());
   });
 };
