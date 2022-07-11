@@ -13,3 +13,13 @@ This application can store sensitive user files upto 1 GB
     - `RUN docker-compose up`
 
 - In your browser open http://localhost:3000
+
+### Demo 
+
+https://user-images.githubusercontent.com/5645152/178373462-a6f38b07-6a4c-4c1e-b56a-d1641ffdda2a.mp4
+
+
+
+
+
+
