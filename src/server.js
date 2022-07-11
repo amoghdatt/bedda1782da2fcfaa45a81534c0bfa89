@@ -24,6 +24,7 @@ module.exports = function Server({
 
     new v1Routes.testRoutes(fastify, { schemaRepository });
     new v1Routes.userRoutes(fastify, { schemaRepository, controllers });
+    new v1Routes.downloadLinkRoutes(fastify, { controllers });
 
     return self;
   };

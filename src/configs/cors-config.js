@@ -1,3 +1,4 @@
 module.exports = {
-  origin: '*'
+  origin: '*',
+  exposedHeaders: 'Content-Disposition'
 };

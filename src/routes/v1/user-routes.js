@@ -77,6 +77,18 @@ function UserRoutes(fastify, { controllers, schemaRepository }) {
     }
   });
 
+  fastify.route({
+    method: 'GET',
+    url: '/v1/user/:userId/file/:fileId/link',
+    description: 'Get Download link for a file',
+    handler: async function (request, reply) {
+      const { fileId, userId } = request.params;
+      const data = await controllers.fileController.generateDownloadLink({ fileId, userId });
+      return { data };
+      reply.code(HTTP_STATUS_CODE.StatusCodes.OK).send({ data });
+    }
+  });
+
   return fastify;
 }
 

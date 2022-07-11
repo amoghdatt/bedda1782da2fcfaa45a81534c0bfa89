@@ -11,6 +11,7 @@ const fastify = require('fastify')({
 const FileController = require('./controllers/file-controller');
 const UserController = require('./controllers/user-controller');
 const $RefParser = require('json-schema-ref-parser');
+const LinkController = require('./controllers/link-controller');
 const v1Routes = require('./routes/v1')();
 const routes = { v1Routes };
 
@@ -25,7 +26,8 @@ const knex = Knex({
 const repositories = new Repositories({ mappers, knex, parser: new $RefParser() });
 const controllers = {
   fileController: new FileController({ repositories, knex, services }),
-  userController: new UserController({ repositories, knex, services })
+  userController: new UserController({ repositories, knex, services }),
+  linkController: new LinkController({ repositories, knex, services })
 };
 
 async function start() {

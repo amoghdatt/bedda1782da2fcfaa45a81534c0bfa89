@@ -17,8 +17,10 @@
     "json-schema-ref-parser": "^9.0.9",
     "jsonwebtoken": "^8.5.1",
     "knex": "^2.1.0",
+    "moment": "^2.29.4",
     "object-mapper": "^6.2.0",
     "pg": "^8.7.3",
+    "randomstring": "^1.2.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

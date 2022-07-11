@@ -39,4 +39,8 @@ module.exports = function FileService(data) {
   this.delete = location => {
     fs.unlinkSync(location);
   };
+
+  this.getStream = location => {
+    return fs.createReadStream(location);
+  };
 };
