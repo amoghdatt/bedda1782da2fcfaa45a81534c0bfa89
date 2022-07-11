@@ -12,6 +12,14 @@ function UserRepository({ mappers, knex }) {
     return userMapper.dbToProject(result);
   };
 
+  this.findByEmail = async (email, transaction = knex) => {
+    const result = await transaction(TABLE_USER)
+      .select(['guid', 'email', 'password'])
+      .where({ email });
+
+    return result;
+  };
+
   this.update = async (userId, user, transaction = knex) => {
     const result = await transaction(TABLE_USER)
       .update(user)

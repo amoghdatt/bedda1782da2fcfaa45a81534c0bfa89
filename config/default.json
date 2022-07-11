@@ -5,5 +5,9 @@
         "password":"password",
         "database":"postgres",
         "port":5432
+    },
+    "jwt":{
+        "lifespan":3600,
+        "secret":"secret"
     }
 }

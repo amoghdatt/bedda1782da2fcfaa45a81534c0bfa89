@@ -9,7 +9,12 @@ function ConfigService() {
     port: config.get('database.port')
   };
 
-  return { database };
+  const jwt = {
+    lifespan: parseInt(config.get('jwt.lifespan')),
+    secret: config.get('jwt.secret')
+  };
+
+  return { database, jwt };
 }
 
 module.exports = ConfigService;

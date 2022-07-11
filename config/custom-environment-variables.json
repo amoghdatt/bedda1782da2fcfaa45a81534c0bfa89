@@ -5,5 +5,9 @@
         "password":"DB_PASSWORD",
         "database":"DB_NAME",
         "port":"DB_PORT"
+    },
+    "jwt":{
+        "lifespan":"JWT_LIFESPAN",
+        "secret":"JWT_SECRET"
     }
 }

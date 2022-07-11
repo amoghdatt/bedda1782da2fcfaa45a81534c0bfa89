@@ -12,6 +12,7 @@ function UserRoutes(fastify, { controllers, schemaRepository }) {
     },
     handler: async function (request, reply) {
       const user = request.body.data;
+      const result = await controllers.userController.login(user);
       reply.code(HTTP_STATUS_CODE.StatusCodes.OK).send({ data: 'logged in' });
     }
   });
@@ -27,7 +28,8 @@ function UserRoutes(fastify, { controllers, schemaRepository }) {
     },
     handler: async function (request, reply) {
       const user = request.body.data;
-      reply.code(HTTP_STATUS_CODE.StatusCodes.OK).send({ data: 'signed in' });
+      const data = await controllers.userController.signUp(user);
+      reply.code(HTTP_STATUS_CODE.StatusCodes.OK).send({ data });
     }
   });
 
