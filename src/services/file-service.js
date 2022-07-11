@@ -34,7 +34,7 @@ module.exports = function FileService(data) {
   }
 
   async function saveFile(filePath) {
-    await pump(data.file, gzip, fs.createWriteStream(filePath));
+    await pump(data.file, fs.createWriteStream(filePath));
 
     return { filePath };
   }
