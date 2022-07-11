@@ -4,12 +4,19 @@ const path = require('path');
 const { pipeline } = require('stream');
 const { PROJECT_DIRECTORY } = require('../constants/project-constants');
 const pump = util.promisify(pipeline);
+const { createGzip } = require('zlib');
+const gzip = createGzip();
+const gz = '.gz';
 
 module.exports = function FileService(data) {
   const self = this;
 
   async function generateFileName() {
     return data.filename;
+  }
+
+  function checkIfFileExists(filePath) {
+    return fs.existsSync(filePath);
   }
 
   async function generatePath(filename) {
@@ -23,11 +30,11 @@ module.exports = function FileService(data) {
       fs.mkdirSync(filePath);
     }
 
-    return path.join(filePath, filename);
+    return path.join(filePath, `${filename}${gz}`);
   }
 
   async function saveFile(filePath) {
-    await pump(data.file, fs.createWriteStream(filePath));
+    await pump(data.file, gzip, fs.createWriteStream(filePath));
 
     return { filePath };
   }
@@ -37,7 +44,7 @@ module.exports = function FileService(data) {
   };
 
   this.delete = location => {
-    fs.unlinkSync(location);
+    return checkIfFileExists(location) ? fs.unlinkSync(location) : undefined;
   };
 
   this.getStream = location => {
