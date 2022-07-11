@@ -1,7 +1,7 @@
 const dbConfig = {
   client: 'pg',
   connection: {
-    host: 'localhost',
+    host: 'db',
     user: 'postgres_user',
     password: 'password',
     database: 'postgres',

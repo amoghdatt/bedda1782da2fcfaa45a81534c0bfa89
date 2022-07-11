@@ -1,6 +1,15 @@
 version: '3.3'
 
 services:
+  api-server:
+    build: .
+    ports:
+      - '9000:9000'
+    depends_on:
+      - "db"
+    command: >
+      bash -c "./wait-for-it.sh db:5432 && npm run knex:db:up 
+      && npm run knex:up:seed && npm run start"
   db:
     image: 'postgres:14.4-alpine'
     environment:
@@ -8,4 +17,12 @@ services:
       POSTGRES_USER: 'postgres_user'
     ports:
       - '5432:5432'
+  react-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-frontend
+    ports:
+      - '3000:3000'
+
+
 

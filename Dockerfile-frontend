@@ -1,0 +1,8 @@
+FROM node:14-alpine3.15
+
+WORKDIR /opt
+
+COPY ["build", "./"]
+RUN npm install -g serve
+
+CMD serve -l tcp://0.0.0.0:3000
