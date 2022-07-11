@@ -13,7 +13,7 @@ function FileRepository({ knex }) {
 
   this.findAllByUserId = async (userId, transaction = knex) => {
     const result = await transaction(TABLE_FILE)
-      .select(['guid', 'userId', 'filename', 'fileType'])
+      .select(['guid', 'userId', 'filename', 'fileType', 'description'])
       .where({ userId });
 
     return result;
@@ -40,6 +40,11 @@ function FileRepository({ knex }) {
     return matchingfile.length
       ? self.update(file.guid, file, transaction)
       : self.create(file, transaction);
+  };
+
+  this.deleteFile = async (fileId, transaction = knex) => {
+    const result = await transaction(TABLE_FILE).where({ guid: fileId }).del().returning(['guid']);
+    return result;
   };
 }
 

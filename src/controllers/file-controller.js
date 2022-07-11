@@ -19,4 +19,8 @@ module.exports = function FileController({ repositories, knex, services }) {
     );
     return filePath;
   };
+
+  this.deleteFile = async function deleteFile(fileId) {
+    const result = await fileRepository.deleteFile(fileId, knex);
+  };
 };

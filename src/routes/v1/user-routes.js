@@ -12,8 +12,8 @@ function UserRoutes(fastify, { controllers, schemaRepository }) {
     },
     handler: async function (request, reply) {
       const user = request.body.data;
-      const result = await controllers.userController.login(user);
-      reply.code(HTTP_STATUS_CODE.StatusCodes.OK).send({ data: 'logged in' });
+      const data = await controllers.userController.logIn(user);
+      reply.code(HTTP_STATUS_CODE.StatusCodes.OK).send({ data });
     }
   });
 
@@ -46,6 +46,7 @@ function UserRoutes(fastify, { controllers, schemaRepository }) {
       const fields = data.fields;
       const enrichedData = {
         ...data,
+        description: fields.description.value,
         userId: request.params.userId
       };
       const filePath = await controllers.fileController.uploadFile(enrichedData);
@@ -60,6 +61,17 @@ function UserRoutes(fastify, { controllers, schemaRepository }) {
     handler: async function (request, reply) {
       const userId = request.params.userId;
       const data = await controllers.userController.allUserFiles(userId);
+      return { data };
+      reply.code(HTTP_STATUS_CODE.StatusCodes.OK).send({ data });
+    }
+  });
+
+  fastify.route({
+    method: 'DELETE',
+    url: '/v1/user/:userId/files/:fileId',
+    description: 'Get all files of a user',
+    handler: async function (request, reply) {
+      const data = await controllers.fileController.deleteFile(request.params.fileId);
       return { data };
       reply.code(HTTP_STATUS_CODE.StatusCodes.OK).send({ data });
     }

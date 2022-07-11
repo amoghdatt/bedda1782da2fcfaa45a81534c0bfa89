@@ -9,18 +9,18 @@ module.exports = function UserController({ repositories, knex, services }) {
 
   this.logIn = async function logIn(credentials) {
     const { email, password } = credentials;
-    const existingUser = await userRepository.findByEmail(email, knex);
+    const [existingUser] = await userRepository.findByEmail(email, knex);
 
     if (!passwordService.verifyPassword(password, existingUser.password)) {
       return { error: 'Wrong email or password' };
     }
 
-    const token = services.authTokenService.createAuthToken({
+    const token = authTokenService.createAuthToken({
       userId: existingUser.guid
     });
 
     return {
-      userId,
+      userId: existingUser.guid,
       token
     };
   };
