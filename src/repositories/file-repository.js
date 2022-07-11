@@ -43,7 +43,10 @@ function FileRepository({ knex }) {
   };
 
   this.deleteFile = async (fileId, transaction = knex) => {
-    const result = await transaction(TABLE_FILE).where({ guid: fileId }).del().returning(['guid']);
+    const result = await transaction(TABLE_FILE)
+      .where({ guid: fileId })
+      .returning(['guid', 'location'])
+      .del();
     return result;
   };
 }

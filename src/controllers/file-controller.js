@@ -21,6 +21,8 @@ module.exports = function FileController({ repositories, knex, services }) {
   };
 
   this.deleteFile = async function deleteFile(fileId) {
-    const result = await fileRepository.deleteFile(fileId, knex);
+    const [{ location }] = await fileRepository.deleteFile(fileId, knex);
+    const fileService = new FileService({});
+    fileService.delete(location);
   };
 };

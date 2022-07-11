@@ -35,4 +35,8 @@ module.exports = function FileService(data) {
   this.save = async () => {
     return await generateFileName().then(generatePath).then(saveFile);
   };
+
+  this.delete = location => {
+    fs.unlinkSync(location);
+  };
 };
