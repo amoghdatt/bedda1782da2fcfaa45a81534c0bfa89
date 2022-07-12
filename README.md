@@ -15,11 +15,5 @@ This application can store sensitive user files upto 1 GB
 - In your browser open http://localhost:3000
 
 ### Demo 
-
-https://user-images.githubusercontent.com/5645152/178373462-a6f38b07-6a4c-4c1e-b56a-d1641ffdda2a.mp4
-
-
-
-
-
+https://user-images.githubusercontent.com/5645152/178428961-85c5c51a-b731-4dfb-ac47-abe1023b2ad6.mp4
 
